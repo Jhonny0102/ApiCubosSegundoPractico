@@ -1,5 +1,6 @@
 ﻿using ApiCubosSegundoPractico.Models;
 using ApiCubosSegundoPractico.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +38,7 @@ namespace ApiCubosSegundoPractico.Controllers
             return Ok();
         }
 
-
+        [Authorize]
         [HttpGet]
         [Route("[action]/{idusuario}")]
         public async Task<ActionResult<Usuario>> PerfilUsuario(int idusuario)
@@ -45,6 +46,7 @@ namespace ApiCubosSegundoPractico.Controllers
             return await this.repo.PerfilUsuario(idusuario);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("[action]/{idusuario}")]
         public async Task<ActionResult<List<Compra>>> GetComprasUsuario(int idusuario)
@@ -52,6 +54,7 @@ namespace ApiCubosSegundoPractico.Controllers
             return await this.repo.GetComprasUsuario(idusuario);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("[action]")]
         public async Task<ActionResult> CreateCompraUsuario(Compra compra)
